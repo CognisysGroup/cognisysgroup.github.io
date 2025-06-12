@@ -1,4 +1,4 @@
-<img width="762" alt="image" src="https://github.com/user-attachments/assets/ce0f8bb7-8856-485e-ad67-277d98d6f60c" />---
+---
 title: Exploring HTB Prolab Dante - A Technical Review + Tips
 author: Soham
 date: 2024-07-01 10:45:00 +0100
