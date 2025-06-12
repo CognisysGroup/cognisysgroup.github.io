@@ -5,7 +5,7 @@ date: 2024-05-22 04:04:00 +0100
 categories: [Android Pentesting, Application Security]
 tags: [Android Pentesting, Application Security]
 image:
-  path: https://github.com/CognisysGroup/cognisysgroup.github.io/assets/46415431/784fcc49-109c-41a5-99f8-9d0835acfde8
+  path:  https://github.com/user-attachments/assets/7d27c836-d4e5-4d61-90fa-a9c652c26f2b
   alt: 
 render_with_liquid: false
 ---
