@@ -1,11 +1,11 @@
----
+<img width="762" alt="image" src="https://github.com/user-attachments/assets/ce0f8bb7-8856-485e-ad67-277d98d6f60c" />---
 title: Exploring HTB Prolab Dante - A Technical Review + Tips
 author: Soham
 date: 2024-07-01 10:45:00 +0100
 categories: [HTB, Prolab, Dante]
 tags: [HTB, Prolab, Dante, Review]
 image:
-  path: https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/6ec93821-f6bf-4534-9489-858cd7428591
+  path: https://github.com/user-attachments/assets/b1b881dc-e5a3-4841-950d-5a10a5277745
   alt: 
 render_with_liquid: false
 ---
@@ -102,9 +102,8 @@ The HTB Prolab Dante provides excellent training for penetration testers who wan
 
 This is the excellent certificate you get from Hack The Box after completing 100% of the Dante labs!
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/0b788675-b767-4b17-aed2-c756b4775178)
+<img width="762" alt="image" src="https://github.com/user-attachments/assets/48e16899-044a-4b52-8dc7-60c92a066cc7" />
 
-![Cert_1](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/6ec93821-f6bf-4534-9489-858cd7428591)
 
 
 **References**
