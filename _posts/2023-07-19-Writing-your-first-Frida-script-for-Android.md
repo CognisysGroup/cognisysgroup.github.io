@@ -5,7 +5,7 @@ date: 2023-07-19 9:45:00 +0100
 categories: [Android Pentesting, Frida]
 tags: [mobile application pentest, android, frida, pentesting, root detection, reverse engineering]
 image:
-  path: https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/1defdfc7-fc6b-446b-a3c2-b0ae3578a14e
+  path: https://github.com/user-attachments/assets/32873034-91ef-4f07-bc25-c51bc62d954c
   alt: 
 render_with_liquid: false
 ---
