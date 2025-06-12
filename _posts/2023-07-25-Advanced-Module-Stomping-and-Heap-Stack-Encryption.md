@@ -5,7 +5,7 @@ date: 2023-07-25 12:40:00 +0800
 categories: [Blogging, Tutorial]
 tags: [red team]
 image:
-  path: https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/58983b40-6ea0-4275-9ac4-aecd1dc8e482
+  path: https://github.com/user-attachments/assets/e170e6dc-c9f3-4af9-b4fc-e44067c6da3c
   alt: 
 render_with_liquid: false
 ---
