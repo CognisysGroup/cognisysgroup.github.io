@@ -5,7 +5,7 @@ date: 2025-07-10 12:45:00 +0100
 categories: [Certificate, Review]
 tags: [CRTO, Review]
 image:
-  path: <img width="1280" height="720" alt="White Pink Grid Feminine Cover Of Tumbnail (2)" src="https://github.com/user-attachments/assets/34907578-cd6c-4f0b-9a88-a9ea6f024512" />
+  path: https://github.com/user-attachments/assets/34907578-cd6c-4f0b-9a88-a9ea6f024512
   alt: 
 render_with_liquid: false
 ---
