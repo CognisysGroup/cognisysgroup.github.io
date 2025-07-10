@@ -1,7 +1,7 @@
 ---
 title: Certified Red Team Operator Certificate Review
 author: Soham
-date: 2025-07-10 12:45:00 +0100
+date: 2025-07-10 10:10:00 +0100
 categories: [Certificate, Review]
 tags: [CRTO, Review]
 image:
