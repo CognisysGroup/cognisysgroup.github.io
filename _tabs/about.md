@@ -1,3 +1,9 @@
+---
+# the default layout is 'page'
+icon: fas fa-info-circle
+order: 4
+---
+
 **About Cognisys Labs**  
 
 Welcome to Cognisys Group Labs, the technical research arm of Cognisys, your trusted partner for cybersecurity, penetration testing, compliance, and vulnerability management.  
