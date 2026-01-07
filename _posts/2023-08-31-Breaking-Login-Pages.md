@@ -2,8 +2,8 @@
 title: Breaking Login Pages
 author: Cognisys
 date: 2023-08-31 5:00:00 +0100
-categories: [Web Application Pentesting, Authentication, ]
-tags: [Application security, Authentication, Broken Authentication, Web Pentesting]
+categories: [Web Application Pentesting, ]
+tags: [Application security, Broken Authentication,]
 image:
   path: https://github-production-user-asset-6210df.s3.amazonaws.com/25560539/264714259-fe9f7eac-1e7a-4164-b72a-f2d2483140b1.png
   alt: 
