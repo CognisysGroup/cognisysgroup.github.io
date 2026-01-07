@@ -2,8 +2,8 @@
 title: Burp Suite Certified Practitioner Exam (BSCP) Review
 author: Cognisys
 date: 2023-09-14 5:00:00 +0100
-categories: [Web Application Pentesting, Application Security, BSCP]
-tags: [BSCP, Application Security, Web Pentesting]
+categories: [Web Application Pentesting, BSCP]
+tags: [BSCP, Web Application Security]
 image:
   path:  https://github.com/user-attachments/assets/4cbe7b8b-daf8-436e-9d9d-855038d4013d
   alt: 
