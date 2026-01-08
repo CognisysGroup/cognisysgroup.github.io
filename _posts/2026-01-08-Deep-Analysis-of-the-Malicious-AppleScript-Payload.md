@@ -366,21 +366,19 @@ graph TD
 ```
 
 
-
-
-
 #### 11. Indicators of Compromise (IOCs) – Actionable for Blue Teams
 
-|Type|Indicator|Notes|
-|---|---|---|
-|Domain|barbermoo.world|Dead C2 (404s); sinkhole/monitor.|
-|URLs|[https://barbermoo.world/ledger/[token](https://barbermoo.world/ledger/%5Btoken?referrer=grok.com)] [https://barbermoo.world/trezor/[token](https://barbermoo.world/trezor/%5Btoken?referrer=grok.com)] [http://barbermoo.world/dynamic](http://barbermoo.world/dynamic?referrer=grok.com) [http://barbermoo.world/gate](http://barbermoo.world/gate?referrer=grok.com)|Block; monitor outbound.|
-|Victim Token|c8f3897680b448c197b9c66144bf81d228633fbdebed788e1f0625a4de834825|Unique per build/victim.|
-|API Key|5190ef1733183a0dc63fb623357f56d6|In headers.|
-|Files/Paths|/tmp/osalogging.zip /tmp/sync[0-9]{7}/ /tmp/*.zip (ledger/trezor)|Hunt for these.|
-|Strings|"MacSync Stealer" "1.1.2_release" "Build Tag: r2" Fake dialogue text|YARA-friendly.|
-|Processes|osascript + curl to suspicious domains ditto zipping temp dirs|EDR behavioral rules.|
-|Network|Outbound HTTP/HTTPS to barbermoo.world with specific UA + api-key header|Proxy/IDS alerts.|
+| Type         | Indicator                                                                                                        | Notes                             |
+| ------------ | ---------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| Domain       | barbermoo.world                                                                                                  | Dead C2 (404s); sinkhole/monitor. |
+| URLs         | barbermoo.world/ledger/token<br>barbermoo.world/trezor/token<br>barbermoo.world/dynamic <br>barbermoo.world/gate | Block; monitor outbound.          |
+| Victim Token | c8f3897680b448c197b9c66144bf81d228633fbdebed788e1f0625a4de834825                                                 | Unique per build/victim.          |
+| API Key      | 5190ef1733183a0dc63fb623357f56d6                                                                                 | In headers.                       |
+| Files/Paths  | /tmp/osalogging.zip /tmp/sync[0-9]{7}/ /tmp/*.zip (ledger/trezor)                                                | Hunt for these.                   |
+| Strings      | "MacSync Stealer" "1.1.2_release" "Build Tag: r2" Fake dialogue text                                             | YARA-friendly.                    |
+| Processes    | osascript + curl to suspicious domains ditto zipping temp dirs                                                   | EDR behavioral rules.             |
+| Network      | Outbound HTTP/HTTPS to barbermoo.world with specific UA + api-key header                                         | Proxy/IDS alerts.                 |
+
 
 #### 12. Detection Recommendations
 
@@ -429,11 +427,8 @@ graph TD
 
 #### 15. References
 
-[https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/](https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/)
+- https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
 
-[https://www.broadcom.com/support/security-center/protection-bulletin/macsync-stealer-malware](https://www.broadcom.com/support/security-center/protection-bulletin/macsync-stealer-malware)
+- https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
 
-[https://exchange.xforce.ibmcloud.com/osint/guid:1fe278fd06404638a50bf7b126f9075c](https://exchange.xforce.ibmcloud.com/osint/guid:1fe278fd06404638a50bf7b126f9075c)
-
-  
-**
+- https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
