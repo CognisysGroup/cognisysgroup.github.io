@@ -1,6 +1,6 @@
 ---
 title: Deep Analysis of the Malicious AppleScript Payload (MacSync Stealer)
-author: Manan Jain
+author: Manan
 date: 2026-01-08 10:10:00 +0100
 categories: [Malware Analysis, C2]
 tags: [Malware Analysis]
