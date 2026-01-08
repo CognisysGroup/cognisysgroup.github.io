@@ -306,7 +306,7 @@ In order to make persistence, it checks for installed applications like ledger, 
 
 #### 10. Detailed Payload Behaviour (Step-by-Step)
 
-![mermaid-diagram-2026-01-08T11-05-28](https://github.com/user-attachments/assets/17b2c1aa-b567-477c-87a8-0fb0ceae32c8)
+<img width="5853" height="9987" alt="mermaid-diagram-2026-01-08T13-14-12" src="https://github.com/user-attachments/assets/26f69e06-a245-48d6-9c00-04d150bcb426" />
 
 #### 11. Indicators of Compromise (IOCs) – Actionable for Blue Teams
 
