@@ -370,7 +370,5 @@ In order to make persistence, it checks for installed applications like ledger, 
 #### 15. References
 
 - https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
-
-- https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
-
-- https://www.jamf.com/blog/macsync-stealer-evolution-code-signed-swift-malware-analysis/
+- https://www.broadcom.com/support/security-center/protection-bulletin/macsync-stealer-malware
+- https://exchange.xforce.ibmcloud.com/osint/guid:1fe278fd06404638a50bf7b126f9075c
