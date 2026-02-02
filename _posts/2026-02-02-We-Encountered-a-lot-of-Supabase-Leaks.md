@@ -42,7 +42,7 @@ At Cognisys, we differentiate our methodology by moving beyond automated scanner
 
 We were not looking for complex obfuscated code, but rather for specific integration patterns. We performed targeted searches for strings that typically signal a Supabase integration, such as the default hosting domain `supabase.co` or the universal JWT prefix `eyJ`. Our search quickly yielded a `supabaseConfig` object left exposed in a main JavaScript bundle:
 
-<img width="1062" height="696" alt="Screenshot 2026-02-02 at 1 17 19 PM" src="https://github.com/user-attachments/assets/d9450bb6-1d79-45c7-9bda-1f5b5d06ab25" />
+https://github.com/user-attachments/assets/d9450bb6-1d79-45c7-9bda-1f5b5d06ab25
 
 For a tester with a development background, spotting the `supabase.co` domain is a "lightbulb moment." It immediately confirms the technology stack and implies a specific architectural vulnerability: unless explicitly disabled, Supabase exposes a full RESTful API at `/rest/v1/` that mirrors the database schema. Rather than simply decoding the token, we leveraged this knowledge to pivot. We took the base URL found in the configuration, appended the REST endpoint, and authenticated with the anonymous key.
 
