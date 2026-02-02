@@ -1,5 +1,5 @@
 ---
-title: Supabase Leaks: What We Found
+title: Supabase Leaks, What We Found
 author: Punit
 date: 2026-02-02 10:10:00 +0100
 categories: [Case Study, DTA]
