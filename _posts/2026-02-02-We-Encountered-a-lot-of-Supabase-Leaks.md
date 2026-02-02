@@ -10,7 +10,7 @@ image:
 render_with_liquid: false
 ---
 
-In late 2025 and early 2026, the cybersecurity landscape witnessed a disturbing trend involving the mass disclosure of Supabase API keys. This pattern came to a head when **our team** identified a massive leak involving a client who approached us for a Black Box Pentest**. During this test, a publicly exposed "anonymous" key, often mistakenly treated as harmless by developers, served as the catalyst for a total compromise of the company's customer database.
+In late 2025 and early 2026, the cybersecurity landscape witnessed a disturbing trend involving the mass disclosure of Supabase API keys. This pattern came to a head when **our team** identified a massive leak involving a client who approached us for a **Black Box Pentest**. During this test, a publicly exposed "anonymous" key, often mistakenly treated as harmless by developers, served as the catalyst for a total compromise of the company's customer database.
 
 While this finding highlights the scale of the problem, it represents only the tip of the iceberg regarding this specific class of vulnerability. This case study details a recent engagement with a UK-based SaaS provider where the Cognisys team identified an identical architectural flaw. 
 
