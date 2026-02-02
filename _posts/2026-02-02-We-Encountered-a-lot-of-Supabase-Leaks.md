@@ -1,9 +1,9 @@
 ---
-title: We Encountered a Lot of Supabase Leaks: You Need to Hear This!
+title: We Encountered a Lot of Supabase Leaks, You Need to Hear This
 author: Punit
 date: 2026-02-02 10:10:00 +0100
-categories: [Case Study]
-tags: [Case Study]
+categories: [Case Study, DTA]
+tags: [Case Study, DTA]
 image:
   path: https://github.com/user-attachments/assets/8a8d0998-1c14-454f-99d5-504ca2a97daa
   alt: 
@@ -41,6 +41,7 @@ The seductive promise of these platforms, "we handle the backend, you build the 
 At Cognisys, we differentiate our methodology by moving beyond automated scanners, which often miss context-specific vulnerabilities. Instead, we adopt a philosophy of "Living in DevTools," analysing client-side code with the mindset of a developer or a dedicated attacker. During this assessment, we began by inspecting the browser's developer console, specifically navigating to the Sources tab to analyse the loaded JavaScript bundles.
 
 We were not looking for complex obfuscated code, but rather for specific integration patterns. We performed targeted searches for strings that typically signal a Supabase integration, such as the default hosting domain `supabase.co` or the universal JWT prefix `eyJ`. Our search quickly yielded a `supabaseConfig` object left exposed in a main JavaScript bundle:
+<img width="1062" height="696" alt="Screenshot 2026-02-02 at 1 17 19 PM" src="https://github.com/user-attachments/assets/db58f472-3e8a-4ee4-9efc-eb8ec08f2c18" />
 
 For a tester with a development background, spotting the `supabase.co` domain is a "lightbulb moment." It immediately confirms the technology stack and implies a specific architectural vulnerability: unless explicitly disabled, Supabase exposes a full RESTful API at `/rest/v1/` that mirrors the database schema. Rather than simply decoding the token, we leveraged this knowledge to pivot. We took the base URL found in the configuration, appended the REST endpoint, and authenticated with the anonymous key.
 The server responded by returning the entire Open API (Swagger) schema, effectively handing us a detailed map of every table, column, and custom function in the database.
