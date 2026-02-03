@@ -21,9 +21,10 @@ To understand how a seemingly standard configuration spiralled into a total comp
 
 This architecture relies on a strict dichotomy of access keys. The **Service Role Key** acts as the administrative master key, capable of bypassing all security protocols, and is strictly intended for server-side operations. In contrast, the **Anonymous (Anon) Key** is designed to be public. It lives within the client-side JavaScript of the web application, allowing the browser to initiate connections directly to the database.
 
-Security in this model relies entirely on **Row Level Security (RLS)**. Think of RLS not as an application-layer check, but as a firewall that lives inside the database tables themselves. When a user requests data using the public Anon key, the database checks the RLS policy to see if that specific user is authorised to view that specific row. If RLS is configured correctly, the system is secure; a user can only query their own data. However, if RLS is misconfigured or disabled, the Anon key effectively transforms into a skeleton key, granting unrestricted access to every row in the table.
+Security in this model relies entirely on the interaction between standard SQL permissions and **Row Level Security (RLS)**. By default, Supabase grants the `anon` role access to tables in the public schema to facilitate client-side fetching. This makes RLS the critical "firewall" that lives inside the database tables. When a user requests data using the public Anon key, the database checks the RLS policy to see if that specific user is authorised to view that specific row. If RLS is configured correctly, the system is secure; a user can only query their own data. However, if RLS is misconfigured or disabled, the permissions fall back to the default grants, effectively transforming the Anon key into a skeleton key that allows unrestricted access to every row in the table. 
 
 Finally, for complex logic that cannot run securely in the browser, developers utilise **Edge Functions**. These are serverless functions meant to handle privileged operations. However, as this case study demonstrates, if these functions blindly trust input without validation, they can inadvertently become gateways for server-side attacks like SSRF.
+
 ## 2. The Target Environments: A Pattern Across Industries
 
 This case study is not based on a single isolated incident. In fact, we have encountered this exact vulnerability across a multitude of client engagements. However, we have selected two specific examples that best serve today's purpose of spreading awareness: the massive systems of a major global manufacturer and the agile infrastructure of a UK-based SaaS provider. Despite their vast differences in scale, our team observed a striking consistency in the architectural patterns that led to these breaches.
@@ -215,17 +216,13 @@ The server accepted the request with a `204 No Content` response, confirming the
 
 ## 5. Root Cause Analysis: The "Default-Permissive" Trap
 
-The vulnerabilities identified were not flaws in the Supabase platform itself, but rather failures in implementation. The core issue lies in the "default-permissive" nature of PostgreSQL when RLS is not strictly enforced.
+The vulnerabilities identified were not flaws in the Supabase platform itself, but rather failures in implementation. The core issue lies in the configuration of the `anon` role. In Supabase, this role is explicitly granted permissions to tables in the `public` schema to facilitate the 'backend-less' experience.
 
-The developers had enabled RLS on some tables but created overly permissive policies that evaluated to `true` for the anonymous role, effectively turning the public key into an admin token. Furthermore, they failed to enable RLS on newer tables like `UserSecuritySettings`, likely assuming that obscure table names would provide security. Additionally, the Edge Functions were deployed without domain allow-listing, allowing them to act as open proxies. The team had trusted that because the frontend UI only displayed a user's own data, the backend was inherently secure a classic case of "Security by Obscurity."
+This architecture creates a dangerous paradox. To prioritise developer velocity, the platform is designed to be **permissive by default**: the `anon` role is automatically granted broad capabilities (`SELECT`, `INSERT`, etc.) so that APIs function the moment a table is created. Security doesn't exist until the developer explicitly activates **Row Level Security (RLS)**. This flips the traditional security model on its head—developers do not need to explicitly _grant_ access to leak data; they must actively _restrict_ it. When RLS is omitted (as with `UserSecuritySettings`) or misconfigured (as with `User`), the system reverts to its open state, turning the public `anon` key into a silent administrative token.
 
 ## 6. Remediation Strategy
 
-Following our urgent disclosure, the client worked to implement a comprehensive remediation strategy. We advised them to audit their entire database schema to ensure every single table had RLS enabled with a strict "Default-Deny" policy. We also guided them in binding data policies directly to user identities using `auth.uid()`, ensuring that users could strictly access only their own data. finally, we helped them sanitise their Edge Functions by implementing strict domain allow-listing to prevent SSRF attacks.
+Following our urgent disclosure, the client worked to implement a comprehensive remediation strategy. We advised them to start by auditing the entire database schema to ensure every single table had RLS enabled with a strict "Default-Deny" policy. We also guided them in binding data policies directly to user identities using `auth.uid()`, ensuring that users could strictly access only the rows that belong to them. To address the network vulnerabilities, we helped them sanitize their Edge Functions by implementing strict domain allow-listing to prevent SSRF attacks. Finally, we recommended immediate invalidation and rotation of the `ANON_KEY` and `SERVICE_ROLE_KEY` to mitigate any scraped credentials.No Exploit - Just Trust in the Wrong Layer!!
 
 The lesson is clear: Modern "backend-less" tools are powerful, but they shift the burden of security from code to configuration. In this new era, your database policy is your firewall.
-
-No Exploit - Just Trust in the Wrong Layer!!
-
-Because RLS did not enforce **DENY ALL by default**, the anonymous role inherited excessive permissions. In effect, a public key became an admin key.
 
