@@ -226,3 +226,8 @@ Following our urgent disclosure, the client worked to implement a comprehensive 
 
 The lesson is clear: Modern "backend-less" tools are powerful, but they shift the burden of security from code to configuration. In this new era, your database policy is your firewall.
 
+## 7. References 
+- https://supabase.com/docs/guides/database/secure-data
+- https://cheatsheetseries.owasp.org/cheatsheets/Key_Management_Cheat_Sheet.html
+  
+
