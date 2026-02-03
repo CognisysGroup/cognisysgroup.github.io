@@ -82,7 +82,7 @@ Content-Type: application/json
 ]
 ```
 
-This payload contained **28,143 user records**. It became immediately apparent that the RLS policies were either misconfigured or entirely absent, exposing massive amounts of Personally Identifiable Information (PII), including names, email addresses, and phone numbers.
+This payload contained **30K+ user records**. It became immediately apparent that the RLS policies were either misconfigured or entirely absent, exposing massive amounts of Personally Identifiable Information (PII), including names, email addresses, and phone numbers.
 
 ### The Deep Dive: Files, Logs, and Corporate Intelligence
 
