@@ -16,7 +16,7 @@ But attackers rarely bother trying to punch through a reinforced concrete wall. 
 
 During a recent black-box engagement, our team experienced exactly this. What started as a standard review of some frontend JavaScript files snowballed into a critical infrastructure compromise. A single misconfigured asset endpoint was quietly leaking highly sensitive CI/CD environment variables.
 
-“Just like that, a routine JavaScript (JS) bundle turned into a master key to the client's cloud environment.”
+>“Just like that, a routine JavaScript (JS) bundle turned into a master key to the client's cloud environment.”
 
 # Why JavaScript Is a Treasure Map for Attackers
 
