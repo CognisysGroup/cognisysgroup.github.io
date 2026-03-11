@@ -60,7 +60,7 @@ Here is a sanitised look at what the server handed us:
 
 What began as a routine JavaScript analysis quickly evolved into something far more significant. Instead of returning the expected application routes or endpoints, the server responded with CI/CD environment variables, exposing sensitive configuration data, including cloud credentials and internal integration tokens.
 
-![][image1]
+<img width="1243" height="951" alt="image (46)" src="https://github.com/user-attachments/assets/09e327f8-3dbe-4c5c-92d9-e958d4ffab79" />
 
 # The Fallout
 
@@ -92,5 +92,3 @@ How do you stop your frontend from leaking the keys to the kingdom? It comes dow
 * [https://github.com/Threezh1/JSFinder](https://github.com/Threezh1/JSFinder)  
 * [https://github.com/trufflesecurity/trufflehog](https://github.com/trufflesecurity/trufflehog)  
 * [https://github.com/gitleaks/gitleaks](https://github.com/gitleaks/gitleaks)
-
-What should have been a static frontend asset instead exposed the entire build environment used by the CI/CD pipeline.
