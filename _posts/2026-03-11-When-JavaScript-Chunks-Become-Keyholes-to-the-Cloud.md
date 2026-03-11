@@ -82,9 +82,8 @@ How do you stop your frontend from leaking the keys to the kingdom? It comes dow
 * **Test your own frontend:** Run tools like LinkFinder or JSFinder against your own compiled JavaScript to see what an attacker sees. It’s the easiest way to catch hidden routes that aren't visible in the UI.  
 * **Stop hardcoding secrets altogether:** Ultimately, the best defense is taking secrets out of the codebase entirely. Relying on dedicated secret managers like HashiCorp Vault, AWS Secrets Manager, or Azure Key Vault ensures credentials are only injected at runtime, keeping them safely out of your frontend bundles.
 
-```
-“Security isn't just about building higher walls. It's about making sure you aren't accidentally handing out the blueprints at the front door.”
-```
+>“Security isn't just about building higher walls. It's about making sure you aren't accidentally handing out the blueprints at the front door.”
+
 
 # References:
 
