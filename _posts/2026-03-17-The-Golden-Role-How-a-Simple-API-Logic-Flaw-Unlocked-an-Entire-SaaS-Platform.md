@@ -100,8 +100,6 @@ Because the required computational power doubles with every single increment, a 
 
 To demonstrate the severity of this misconfiguration, we took the leaked hash and ran it against a standard, commercially available cracking rig.
 
-<img width="1848" height="658" alt="image" src="https://github.com/user-attachments/assets/b9eafe3f-f0a8-453a-9c8a-4c26cdeaf85b" />
-
 Because the application coupled a weak hashing algorithm with a law password complexity policy, we cracked the victim's password in **under 3 minutes**.
 
 The implications of this were catastrophic. An attacker wouldn't just be limited to temporarily impersonating a user via the frontend UI by exploiting the initial IDOR. Because we had global read access across the multi-tenant environment, we could write a simple script to systematically query the API, harvest the weak hashes for every CEO, IT Administrator, and Manager on the platform, and crack them entirely offline.
