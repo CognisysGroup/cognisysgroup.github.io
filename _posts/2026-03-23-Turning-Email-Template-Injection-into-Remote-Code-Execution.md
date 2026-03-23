@@ -5,7 +5,7 @@ date: 2026-03-23 15:10:00 +0100
 categories: [Case Study, DTA]
 tags: [Case Study, DTA]
 image:
-  path: https://github.com/user-attachments/assets/9b4af5b2-cb08-408a-86bb-f55381100989
+  path: https://github.com/user-attachments/assets/9e1e8cbc-ebb8-493b-95c2-3e150a59182e
 render_with_liquid: false
 ---
 
