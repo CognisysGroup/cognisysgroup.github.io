@@ -47,7 +47,7 @@ You need to have a rooted Android device or emulator, most of the emulators prov
 
 Once your device is connected with ADB, you would need to know the architecture type of your device in order to download the Frida Server, it is another half of Frida which you will install on the Android. To identify the architecture type, use `adb shell getprop ro.product.cpu.abi` command:
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/faddd03f-4f05-4eb2-ad15-659ecf9bed01)
+![image](https://github.com/user-attachments/assets/838063d0-0935-465b-8941-0c0ba3a0f0d2)
 
 Look for `frida-server-{version}-android-{architecture}` in the [releases](https://github.com/frida/frida/releases) section of the Frida GitHub repository and download the corresponding Frida Server with the latest version. Unzip the downloaded archive and push the Frida Server to the device. For that, use the command `adb push <Firda-Server> /data/local/tmp`. By doing this, it will move the Firda Server to `/data/local/tmp` directory of the Android device.
 
