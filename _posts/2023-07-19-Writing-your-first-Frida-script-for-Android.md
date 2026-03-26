@@ -51,7 +51,7 @@ Once your device is connected with ADB, you would need to know the architecture 
 
 Look for `frida-server-{version}-android-{architecture}` in the [releases](https://github.com/frida/frida/releases) section of the Frida GitHub repository and download the corresponding Frida Server with the latest version. Unzip the downloaded archive and push the Frida Server to the device. For that, use the command `adb push <Firda-Server> /data/local/tmp`. By doing this, it will move the Firda Server to `/data/local/tmp` directory of the Android device.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/57502600-642e-40bd-8519-177bb75479e1)
+![image](https://github.com/user-attachments/assets/015c94b3-c749-4353-bdcf-75611f706175)
 
 Further you need to modify the Frida-Server permissions to run it. To do so, follow the below commands:
 
@@ -60,11 +60,11 @@ Further you need to modify the Frida-Server permissions to run it. To do so, fol
 3. `chmod +x /data/local/tmp/<Frida-Server>`
 4. `./data/local/tmp/<Frida-Server>`
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/0ec84891-aacc-450f-ba6d-ba9af237ed00)
+![image](https://github.com/user-attachments/assets/76d2aeae-7388-4973-bf9b-cf65d087d546)
 
 To verify Frida-server is running correctly on Android, open a new terminal and enter `frida-ps -Uai` command. It will list the installed applications along with their package names on the Android device.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/709c71b5-7761-4e7a-b2cb-0ee2ccddcb41)
+![image](https://github.com/user-attachments/assets/3120f21c-ad0b-45ae-9cae-26437aba65ed)
 
 With this confirmation, the setup is done. For further demonstration, I've developed a vulnerable application [FridaMe](https://github.com/CognisysGroup/FridaMe). You can download the APK from the releases section of the GitHub repository.  
 
@@ -72,13 +72,13 @@ With this confirmation, the setup is done. For further demonstration, I've devel
 
 To install the application, you can either drag and drop the APK into the emulator or can use the command `adb install <application_name>.apk` Let's have a look at the installed application.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/4c8f9837-6e1d-4b2b-834e-a380d0eaf748)
+![image](https://github.com/user-attachments/assets/3c0dc92a-226a-4ac7-bead-9d5e27665e9e)
 
 As seen above, there are two functionalities, but both of them are inaccessible due to the restrictions.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/8d2c07fd-bc92-4bd9-b1de-e0bf8d1e41b2)
+![image](https://github.com/user-attachments/assets/70f9e393-a530-403e-bc6f-122d635c87eb)
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/21dc8c3c-4ef7-4d17-bec6-b7c2208b1e95)
+![image](https://github.com/user-attachments/assets/9f1bf401-2328-4abe-b2d8-9b91ae456528)
 
 Let's decompile the APK and have a look at its code to write a Frida script in order to bypass these restrictions.
 
@@ -86,7 +86,7 @@ Let's decompile the APK and have a look at its code to write a Frida script in o
 
 There is a traditional way to decompile the APK and reach its source code where you extract the APK using [Apktool](https://github.com/iBotPeaches/Apktool) then use [dex2jar](https://github.com/pxb1988/dex2jar) to convert `classes.dex` to `classes.jar` and lastly use [jd-gui](https://github.com/java-decompiler/jd-gui) to view the java class files. But there are some tools such as [jadx-gui](https://github.com/skylot/jadx), [JEB]( https://www.pnfsoftware.com/), etc. which automate this process and provide additional features such as bytecode viewer, deobfuscator, debugger, etc. Here, we will use Jadx-gui to decompile the application. Open the Jadx-gui and drag & drop the APK into it. It will take a little time and you would be presented with this screen.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/6b8e09c7-43bc-4696-ae9f-d06d43a787d5)
+![image](https://github.com/user-attachments/assets/37639c37-f0bf-4907-9cfc-48b397d9b37c)
 
 ## Analysing the code to identify the key functions
 
@@ -94,11 +94,11 @@ There is a traditional way to decompile the APK and reach its source code where 
 
 `Androidmanifest.xml` contains the blueprint of the Android application. You can always start analysing the source code from here. It can be found under the Resources directory. Here, we want to find the code responsible for those restrictions and for that, we need to start analysing the code from `MainActivity` as it's the first activity rendered by the application. You can identify the `MainAcitvity` by confirming the `MAIN` and `LAUNCHER` intent filter within it. 
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/15840906-d36c-482e-bf5e-16f0b702449f)
+![image](https://github.com/user-attachments/assets/f3268712-fad3-4752-b2a6-71ab5bcc82b7)
 
 Since we got the path of the `MainActivity` which is `group.cognisys.fridame.MainActivity`, we can expand the directory structure and open the `MainActivity`.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/caf4edb9-8605-4f4a-8a63-2cc25221a21c)
+![image](https://github.com/user-attachments/assets/b64b9a03-456c-4ce2-ab12-6f2402bed58e)
 
 The initial logic for checking the user privilege is written inside the `onClick()` listener of the `adminButton`. If we look closer, there is an `if` condition initiating a call to `isAdmin()`.
 
@@ -126,21 +126,21 @@ In the next line, we have changed the implementation of the `isAdmin()` with our
 
 Let's run and test our script against the application. Make sure the Frida server on Android is up and running. Use the command `frida -U -l yourscript.js -f group.cognisys.fridame` to attach the script with the vulnerable application. The `-l` flag is used to provide the Frida script and the `-f` flag accepts the package name of the application.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/220953f6-9df4-4a0d-a2f0-1f05c9bb4a4e)
+![image](https://github.com/user-attachments/assets/f2ee3225-5d86-4046-8b46-a62a5da3c684)
 
 This will start the application with our Frida script attached to it. If you click the `ADMIN AREA` button, you would be able to bypass the restriction and access `AdminArea` activity as seen below.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/d604489d-9da6-4423-b699-2abe6009ddbf)
+![image](https://github.com/user-attachments/assets/c845c35c-eb67-44ce-a323-e6b590156ac8)
 
 Now, let's try to bypass root detection. For that, we would need to identify the code responsible for detecting root access. We can again start with the `MainActivity` as the `USER LOGIN `button is defined within it.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/153b8ec5-eafb-4e25-9cca-4914bc5a3707)
+![image](https://github.com/user-attachments/assets/1f93c4e8-c8e7-48cf-95c4-344e2f370497)
 
 The above code is responsible for root detection check. Let's understand the flow. There is an `onclick()` listener for the `userLogin` button which calls `Utils.isDeviceRooted()` method and stores its value in the `status` variable. Then there is an `if` condition which compares the values of the `status` variable with `"Device is safe."`. If the condition satisfies then it will take us to another activity or else it will display the error `"Device is rooted, can't proceed further!"`.
 
 Let's look at the implementation of `Utils.isDeviceRooted()` method. Double-click on a method to open its definition. Jadx-gui will open its class in a new tab.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/68cb3b0e-9af2-497c-9c44-c0efff9e4b50)
+![image](https://github.com/user-attachments/assets/bc80b995-74df-4af2-bbd2-5a4e4a3dd8b8)
 
 As seen above, there is an `isDeviceRooted()` method within the `Utils` class which returns a string. Here, the [RootBeer](https://github.com/scottyab/rootbeer) library is used to detect root access on Android. The `isRooted` variable stores the value of RootBeer's `rootBeer.isRooted()` method which returns `true` or `false` depending upon whether the device is rooted or not. And lastly, there is an `if` condition which checks the value of the `isRooted` variable and returns a string accordingly.
 
@@ -174,7 +174,7 @@ Java.perform(() => {
 
 Let's run it against the application. Use the same command as above to run the application by attaching the script. You can click on the `USER LOGIN` button to confirm the bypass for the root detection, as seen below.
 
-![image](https://github.com/CognisysGroup/cognisysgroup.github.io/assets/25560539/65b41355-190b-4720-9691-9192715b1f19)
+![image](https://github.com/user-attachments/assets/42bc4ded-4125-4196-8da2-c64a1ec57b8f)
 
 ## Conclusion 
 
