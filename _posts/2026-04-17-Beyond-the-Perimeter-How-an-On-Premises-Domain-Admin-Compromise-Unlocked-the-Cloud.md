@@ -43,7 +43,7 @@ Following the initial Domain Admin compromise, our first objective was to unders
 
 We utilised compromised user's credentials to authenticate and run ROADrecon for enumerating the Entra. Members of highly privileged Directory Roles were identified, as illustrated in the following snapshot.
 
-```console
+```bash
 ┌──(cognisys㉿ GCH-NUC)-[~/example]
 └─$ roadrecon auth -u highprivilegeuser@example.com -p SecurePassword -c azcli
 Tokens were written to .roadtools_auth
