@@ -1,7 +1,7 @@
 ---
 title: Breaking Tenant Boundaries, When Path Traversal Isn't About the Filesystem
 author: Rajveer
-date: 2026-05-25 15:50:00 +0100
+date: 2026-05-26 13:45:00 +0100
 categories: [Case Study, Web Application Pentesting]
 tags: [Case Study, Web Application Pentesting]
 image:
